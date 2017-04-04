@@ -1,0 +1,30 @@
+<br>
+<div class="well">
+  <h1>New Product</h1>
+</div>
+<hr>
+<%= form_for @product do |f| %>
+  <% if @product.errors.any? %>
+    <% @product.errors.full_messages.each do |msg| %>
+      <div class="alert alert-danger"><%= msg %></div>
+    <% end %>
+  <% end %>
+  <div>
+    <%= f.label :title %>
+    <%= f.text_field(:title, {:class => 'form-control'}) %>
+  </div>
+  <div>
+    <%= f.label :Description %>
+    <%= f.text_area(:Description, {:class => 'form-control'}) %>
+  </div>
+  <div>
+    <%= f.label :price %>
+    <%= f.text_field(:price, {:class => 'form-control'}) %>
+  </div><br>
+  <p>
+    <div class="">
+      <%= f.collection_select :category_id, Category.all, :id, :name %>
+    </div><br>
+  <%= f.submit('Submit',{:class => 'btn btn-primary'}) %>
+  </p>
+<% end %>

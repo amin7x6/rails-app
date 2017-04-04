@@ -1,0 +1,50 @@
+<br>
+<div class="well">
+<h1><%= @product.title %></h1>
+<h3><%= @product.Description %></h3>
+<p><%= @product.price %></p>
+</div>
+
+
+
+<%= link_to 'Edit', edit_product_path(@product), :class => 'btn btn-default' %>
+
+<%# Rails enables us to make links end non-GET requests by setting the `method`
+    attribute for `link_to`. Rails uses Javascript to accomplish that. %>
+<%= link_to 'Delete', product_path(@product),
+                      method: :delete,
+                      data: { confirm: 'Are you sure?' },
+                      :class => 'btn btn-danger'%>
+
+<%= link_to 'Save', products_path, :class => 'btn btn-success' %>
+
+<hr>
+
+<h2>Add a Review</h2>
+<%= form_for [@product, @review] do |f| %>
+  <div>
+
+    <%= f.label :body %>
+    <%= f.text_area(:body, {:class => 'form-control'}) %><br>
+
+    <%= f.label :rating %>
+    <%= f.text_field(:rating, {:class => 'form-control'}) %>
+
+  </div><br>
+
+  <%= f.submit({:class => 'btn btn-default'}) %>
+<% end %>
+<hr>
+
+
+<%  @product.reviews.each do |review| %>
+<div class="well">
+  <h4>Title : <%= review.body %></h4>
+  <p>Review : <%= review.rating %></p>
+  <hr>
+  <%= link_to(
+  'Delete', product_review_path(@product, review), method: :delete,
+  data:{confirm: 'Are you sure!!'}, :class => 'btn btn-danger')%>
+  <hr />
+</div>
+  <% end %>

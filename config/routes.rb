@@ -7,7 +7,23 @@ Rails.application.routes.draw do
 
   post('/contact', {to: 'contact#create', as: 'contact_submit'})
 
+  # get('/products/new', { to: 'products#new', as: 'new_product' })
+  # post('/products', { to: 'products#create', as: 'products' })
+  #
+  # get('/products/:id', { to: 'products#show', as: 'product' })
+  #
+  #
+  # get('/products', { to: 'products#index' })
+  #
+  # get('/products/:id/edit', { to: 'products#edit', as: 'edit_product' })
+  #
+  # patch('/products/:id', { to: 'products#update' })
+  #
+  # delete('/products/:id', { to: 'products#destroy' })
 
+  resources :products do
+    resources :reviews
+  end
 
   root 'welcome#index'
  end

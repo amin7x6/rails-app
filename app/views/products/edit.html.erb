@@ -1,0 +1,26 @@
+<br>
+<div class="well">
+<h1>Edit Product</h1>
+</div>
+
+<%= @product.errors.full_messages.join(', ') %>
+<%= form_for @product do |f| %>
+<% if @product.errors.any? %>
+    <% @product.errors.full_messages.each do |msg| %>
+      <div class="alert alert-danger"><%= msg %></div>
+    <% end %>
+    <% end %>
+<div>
+  <%= f.label :title%>
+  <%= f.text_field(:title, {:class => 'form-control'}) %>
+</div>
+<div>
+  <%= f.label :Description%>
+  <%= f.text_area(:Description, {:class => 'form-control'}) %>
+</div>
+<div>
+  <%= f.label :price%>
+  <%= f.text_area(:price, {:class => 'form-control'}) %>
+</div><br><br>
+<%= f.submit({:class => 'btn btn-primary'}) %>
+<% end %>

@@ -1,0 +1,14 @@
+<br>
+<div class="well">
+<h1>All Products</h1>
+</div>
+<br><hr><br>
+<% @products.each do |product| %>
+<div class="well">
+  <h1><%= product.title %></h1>
+  <h4><%= product.Description %></h4>
+  <h4><%= product.price %></h4>
+
+  <p><%= link_to "Read More", product_path(product), :class => 'btn btn-default' %></p>
+</div>
+<% end %>
